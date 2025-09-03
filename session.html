@@ -133,7 +133,7 @@ document.querySelectorAll(".tab").forEach(tab=>{
 
 /* ==== Aquifers ==== */
 let aquiferLayer=L.layerGroup().addTo(map);
-fetch("data/Aquifer.geojson").then(r=>r.json()).then(geojson=>{
+fetch("aquifer.geojson").then(r=>r.json()).then(geojson=>{
   aquiferLayer=L.geoJSON(geojson,{
     style:f=>{
       let c="#999";
@@ -155,7 +155,7 @@ document.getElementById("aquiferClass").addEventListener("change",e=>{
 
 /* ==== Geology ==== */
 let geologyLayer=L.layerGroup().addTo(map);
-fetch("data/Geological.geojson").then(r=>r.json()).then(geojson=>{
+fetch("geology.geojson").then(r=>r.json()).then(geojson=>{
   geologyLayer=L.geoJSON(geojson,{
     style:f=>{
       let c="#ccc";
@@ -179,7 +179,7 @@ document.getElementById("geoCategory").addEventListener("change",e=>{
 
 /* ==== Faults ==== */
 let faultsLayer=L.layerGroup().addTo(map);
-fetch("data/faults.geojson").then(r=>r.json()).then(geojson=>{
+fetch("faults.geojson").then(r=>r.json()).then(geojson=>{
   faultsLayer=L.geoJSON(geojson,{
     style:{color:"#000",weight:2,dashArray:"5,5"},
     onEachFeature:(f,l)=>l.bindPopup(`Fault: ${f.properties.Name||"N/A"}`)
@@ -188,3 +188,4 @@ fetch("data/faults.geojson").then(r=>r.json()).then(geojson=>{
 </script>
 </body>
 </html>
+
