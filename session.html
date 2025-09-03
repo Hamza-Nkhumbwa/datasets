@@ -42,8 +42,18 @@
 </head>
 <body>
   <div id="topbar">
-    <div>🌍 Malawi Groundwater Dashboard</div>
-    <div><span style="font-size:14px;">Total Yield:</span> <strong id="totalYield" style="color:yellow">0</strong> m³</div>
+   <div id="topbar">
+  <div>🌍 Malawi Groundwater Dashboard</div>
+  
+  <div style="display:flex;align-items:center;gap:15px;">
+    <div>
+      <span style="font-size:14px;">Total Yield:</span> 
+      <strong id="totalYield" style="color:yellow">0</strong> m³
+    </div>
+    <img src="nwra_logo.png" alt="NWRA Logo" style="height:45px;width:auto;">
+  </div>
+</div>
+
   </div>
 
   <div id="container">
@@ -193,3 +203,4 @@ fetch("https://raw.githubusercontent.com/Hamza-Nkhumbwa/datasets/main/faults.geo
 </script>
 </body>
 </html>
+
