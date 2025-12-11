@@ -314,8 +314,7 @@
         }
 
         .leadership-image {
-            /* use the user's GIS image as a full-cover background */
-            background: url('https://hamza-nkhumbwa.github.io/datasets/gis.png') center/cover no-repeat;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
             height: 400px;
             border-radius: 12px;
             display: flex;
@@ -335,14 +334,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            /* subtle dark overlay to keep text readable */
-            background: rgba(0,0,0,0.25);
-            border-radius: 12px;
-        }
-
-        .leadership-image > * {
-            position: relative;
-            z-index: 1;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
         }
 
         /* Projects Section */
@@ -402,13 +395,6 @@
             justify-content: center;
             color: white;
             font-size: 3rem;
-        }
-
-        /* extra helper class for image thumbnails */
-        .project-image.img-bg {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         .project-content {
@@ -719,7 +705,69 @@
                 font-size: 1.8rem;
             }
         }
-    </style>
+    
+/* Leadership carousel styles */
+.carousel{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+.carousel-track{
+    display:flex;
+    transition:transform 0.45s ease;
+    width:100%;
+    height:100%;
+}
+.carousel-slide{
+    min-width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.carousel-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(255,255,255,0.8);
+    border:none;
+    padding:10px 14px;
+    font-size:22px;
+    cursor:pointer;
+    border-radius:6px;
+    z-index:5;
+}
+.carousel-btn.prev{ left:12px; }
+.carousel-btn.next{ right:12px; }
+.carousel-dots{
+    position:absolute;
+    bottom:12px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:8px;
+    z-index:6;
+}
+.carousel-dots button{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,0.7);
+    cursor:pointer;
+    padding:0;
+}
+.carousel-dots button.active{
+    background:var(--primary);
+    box-shadow:0 2px 8px rgba(0,0,0,0.18);
+}
+
+</style>
 </head>
 <body>
     <!-- Header Section -->
@@ -785,7 +833,7 @@
     <section class="focus-areas" id="focus">
         <div class="container">
             <div class="section-title">
-                <h2>GIS Application Areas</h2>
+                <h2>GIS and Drone Application Areas</h2>
                 <p>Specializing in the application of geospatial technologies across multiple sectors to drive informed decision-making and sustainable development.</p>
             </div>
             <div class="focus-grid">
@@ -826,12 +874,46 @@
                 <p>Driving the geospatial community forward through knowledge sharing, mentorship, and collaborative initiatives.</p>
             </div>
             <div class="leadership-content">
-                <div class="leadership-text">
+
+
+
+                    <div class="leadership-role" style="margin-top:20px; padding:16px; background:#fff; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <h3>Drone Technology President</h3>
+                        <p>Team lead responsible for pre-flight and post-flight safety checks, mission planning and supervising UAV operations. Key duties included ensuring drone airworthiness, battery management, and safe deployment during missions.</p>
+                        <strong>Pre-flight / Post-flight checklist (high-level)</strong>
+                        <ul style="margin-left:20px; margin-top:10px;">
+                            <li>Check battery charge level and secure battery compartment</li>
+                            <li>Inspect propellers for damage and ensure correct mounting</li>
+                            <li>Verify gimbal covers removed and gimbal stabilised</li>
+                            <li>Confirm firmware and software versions are up-to-date</li>
+                            <li>Calibrate compass and IMU if required</li>
+                            <li>Verify GPS lock and telemetry link</li>
+                            <li>Check sensors and cameras for cleanliness and functionality</li>
+                            <li>Secure payload (if any) and confirm mounting points</li>
+                            <li>Post-flight: inspect for physical damage, log flight time and battery cycles</li>
+                        </ul>
+                    </div>
+                        <div class="leadership-image">
+                    <div class="carousel" id="leadershipCarousel" aria-label="Leadership images carousel" tabindex="0">
+                        <button class="carousel-btn prev" aria-label="Previous image">&#10094;</button>
+                        <div class="carousel-track">
+                            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0140.jpg" alt="Drone preflight 1" class="carousel-slide">
+                            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0138.jpg" alt="Drone preflight 2" class="carousel-slide">
+                            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0137.jpg" alt="Drone preflight 3" class="carousel-slide">
+                            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0136.jpg" alt="Drone preflight 4" class="carousel-slide">
+                        </div>
+                        <button class="carousel-btn next" aria-label="Next image">&#10095;</button>
+                        <div class="carousel-dots" role="tablist" aria-label="Slide indicators"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+                    <div class="leadership-text">
                     <h2>State of the Map Malawi 2025</h2>
                     <p>As an active contributor to the OpenStreetMap community, I'm proud to be part of organizing State of the Map Malawi 2025 - the premier gathering for open mapping enthusiasts, GIS professionals, and community mappers across Malawi.</p>
                     <p>This initiative brings together stakeholders from government, NGOs, academia, and the private sector to share knowledge, build capacity, and advance the use of open geospatial data for national development.</p>
-                    
-                    <div class="leadership-highlight">
+                     <!-- <div class="leadership-highlight"> -->
                         <h3>Leadership Impact</h3>
                         <p>Through my involvement in State of the Map Malawi, I'm helping to:</p>
                         <ul style="margin-left: 20px; margin-top: 10px;">
@@ -840,17 +922,13 @@
                             <li>Mentor upcoming GIS professionals</li>
                             <li>Foster collaboration between sectors</li>
                         </ul>
-                    </div>
+                    <!-- </div> -->
                     
                     <a href="https://www.linkedin.com/posts/hamza-nkhumbwa_sotm2025-openstreetmap-gismalawi-activity-7396174585576099840-5kLb" target="_blank" class="btn btn-primary" style="margin-top: 20px;">View Leadership Activity</a>
+                   
                 </div>
-                <div class="leadership-image">
-                    <div style="text-align:center; padding: 20px;">
-                      Community Building & Collaboration
-                    </div>
-                </div>
-            </div>
-        </div>
+                
+            
     </section>
 
     <!-- Projects Section -->
@@ -877,7 +955,7 @@
                     </div>
                     <div class="project-content">
                         <h3>AgriSight — Smart Farming Dashboard</h3>
-                        <p>A drone + GIS dashboard built to monitor soil fertility and crop health, enabling data-driven farming decisions.</p>
+                        <p>A drone + GIS dashboard built to monitor soil fertility and crop health, enabling data‑driven farming decisions.</p>
                         <div class="project-tags">
                             <span class="project-tag">Drone Mapping</span>
                             <span class="project-tag">Dashboard</span>
@@ -906,24 +984,6 @@
                         <div class="project-links">
                             <a href="https://hamza-nkhumbwa.github.io/nwratrialtwo/geetingthere.html" target="_blank" class="btn btn-primary">View Dashboard</a>
                             <a href="#" class="btn btn-outline">Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- NEW: Catchment Delineation Project (Natural Resources) -->
-                <div class="project-card" data-category="resources">
-                    <div class="project-image img-bg" style="background-image: url('https://hamza-nkhumbwa.github.io/datasets/gauging.png');"></div>
-                    <div class="project-content">
-                        <h3>Catchment Delineation — Gauging Stations (Malawi)</h3>
-                        <p>Delineated catchment areas for gauging stations across Malawi to support hydrological analysis and water resources planning. Work involved preprocessing DEMs, watershed delineation, and validating sub-catchment boundaries against station locations.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Hydrology</span>
-                            <span class="project-tag">Catchment Delineation</span>
-                            <span class="project-tag">DEM Analysis</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://hamza-nkhumbwa.github.io/datasets/gauging.png" target="_blank" class="btn btn-primary">View Map</a>
-                            <a href="#" class="btn btn-outline">Method Details</a>
                         </div>
                     </div>
                 </div>
@@ -989,9 +1049,27 @@
                             <a href="https://www.linkedin.com/posts/hamza-nkhumbwa_must-ead-sbapp-activity-7331742943080271872-zPSZ" target="_blank" class="btn btn-primary">View Highlights</a>
                             <a href="#" class="btn btn-outline">Details</a>
                         </div>
+                        <!-- NEW: Catchment Delineation Project (Natural Resources) -->
+                <div class="project-card" data-category="resources">
+                    <div class="project-image img-bg" style="background-image: url('https://hamza-nkhumbwa.github.io/datasets/gauging.png');"></div>
+                    <div class="project-content">
+                        <h3>Catchment Delineation — Gauging Stations (Malawi)</h3>
+                        <p>Delineated catchment areas for gauging stations across Malawi to support hydrological analysis and water resources planning. Work involved preprocessing DEMs, watershed delineation, and validating sub-catchment boundaries against station locations.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Hydrology</span>
+                            <span class="project-tag">Catchment Delineation</span>
+                            <span class="project-tag">DEM Analysis</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://hamza-nkhumbwa.github.io/datasets/gauging.png" target="_blank" class="btn btn-primary">View Map</a>
+                            <a href="#" class="btn btn-outline">Method Details</a>
+                        </div>
                     </div>
                 </div>
                 
+                    </div>
+                </div>
+
                 <!-- Urban Planning Project -->
                 <div class="project-card" data-category="health">
                     <div class="project-image">
@@ -999,7 +1077,7 @@
                     </div>
                     <div class="project-content">
                         <h3>Urban Planning — Lilongwe City Council</h3>
-                        <p>Digitizing land records and supporting UN Urban Resilience Planning using ArcGIS Pro, QGIS and drone-based analyses.</p>
+                        <p>Digitizing land records and supporting UN Urban Resilience Planning using ArcGIS Pro, QGIS and drone‑based analyses.</p>
                         <div class="project-tags">
                             <span class="project-tag">Urban Planning</span>
                             <span class="project-tag">Resilience</span>
@@ -1019,7 +1097,7 @@
                     </div>
                     <div class="project-content">
                         <h3>Dzalanyama Forest — Land Use Change Prediction</h3>
-                        <p>Machine Learning-based land use/cover change forecasting integrating historical data and predictive modelling.</p>
+                        <p>Machine Learning‑based land use/cover change forecasting integrating historical data and predictive modelling.</p>
                         <div class="project-tags">
                             <span class="project-tag">Machine Learning</span>
                             <span class="project-tag">Land Use Change</span>
@@ -1059,9 +1137,10 @@
                         <span class="skill">Data Visualization</span>
                     </div>
                 </div>
-                <div class="about-image">
-                    Spatial Data for Sustainable Development
-                </div>
+                <div class="about-image" style="background-image: url('https://hamza-nkhumbwa.github.io/datasets/gis.png');">
+    Spatial Data for Sustainable Development
+</div>
+
             </div>
         </div>
     </section>
@@ -1080,7 +1159,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h3>Email</h3>
-                            <p>hamza.nkhumbwa@example.com</p>
+                            <p>hamzankhumbwa01@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1182,13 +1261,79 @@
                 });
             });
             
-            // Simple form submission handler
+            // Contact form now opens user's email client with a pre-filled message (mailto)
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Thank you for your message! I will get back to you soon.');
+                const name = document.getElementById('name').value || '';
+                const email = document.getElementById('email').value || '';
+                const subject = document.getElementById('subject').value || 'Contact via Portfolio';
+                const message = document.getElementById('message').value || '';
+                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
+                const mailto = `mailto:hamzankhumbwa01@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+                // Open user's default mail client
+                window.location.href = mailto;
+                // optionally reset form
                 this.reset();
             });
         });
+    
+        // Leadership carousel functionality
+        (function() {
+            const carousel = document.getElementById('leadershipCarousel');
+            if(!carousel) return;
+            const track = carousel.querySelector('.carousel-track');
+            const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+            const prevBtn = carousel.querySelector('.carousel-btn.prev');
+            const nextBtn = carousel.querySelector('.carousel-btn.next');
+            const dotsContainer = carousel.querySelector('.carousel-dots');
+            let idx = 0;
+            // create dots
+            slides.forEach((s, i) => {
+                const btn = document.createElement('button');
+                btn.setAttribute('aria-label', 'Slide ' + (i+1));
+                if(i === 0) btn.classList.add('active');
+                btn.addEventListener('click', () => {
+                    idx = i;
+                    update();
+                });
+                dotsContainer.appendChild(btn);
+            });
+            const dots = Array.from(dotsContainer.querySelectorAll('button'));
+            function update() {
+                const w = track.clientWidth;
+                track.style.transform = 'translateX(' + (-idx * w) + 'px)';
+                dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+            }
+            window.addEventListener('resize', update);
+            prevBtn.addEventListener('click', () => {
+                idx = (idx - 1 + slides.length) % slides.length;
+                update();
+            });
+            nextBtn.addEventListener('click', () => {
+                idx = (idx + 1) % slides.length;
+                update();
+            });
+            // allow keyboard navigation
+            carousel.addEventListener('keydown', (e) => {
+                if(e.key === 'ArrowLeft') prevBtn.click();
+                if(e.key === 'ArrowRight') nextBtn.click();
+            });
+            // basic swipe for touch
+            let startX = null;
+            carousel.querySelector('.carousel-track').addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            carousel.querySelector('.carousel-track').addEventListener('touchend', (e) => {
+                if(startX === null) return;
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                if(Math.abs(diff) > 40) {
+                    if(diff > 0) nextBtn.click(); else prevBtn.click();
+                }
+                startX = null;
+            });
+        })();
+
     </script>
 </body>
 </html>
