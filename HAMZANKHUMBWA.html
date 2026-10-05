@@ -3,801 +3,743 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hamza Nkhumbwa — Geo-Informatics Field Portfolio</title>
+<title>Hamza Nkhumbwa | GIS & Data Analyst, Earth Observation Specialist, Licensed Drone Pilot</title>
+<meta name="description" content="Portfolio of Hamza Nkhumbwa, GIS and data analyst, Earth Observation specialist and licensed UAV pilot in Malawi. Dashboards, remote sensing, drone mapping, flood risk, water resources and urban planning.">
+<meta property="og:title" content="Hamza Nkhumbwa | GIS & Data Analyst">
+<meta property="og:description" content="Data analysis, dashboards, remote sensing and drone mapping for water, agriculture, disaster risk and urban planning in Malawi.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root{
   --ink:#10211c;
   --ink-soft:#1b352c;
   --paper:#f6f2e8;
-  --paper-card:#fffdf8;
+  --card:#fffdf8;
   --line:#dcd4bf;
-  --map-green:#2f6b4f;
-  --map-green-deep:#204b38;
+  --green:#2f6b4f;
+  --green-deep:#204b38;
   --slate:#3d6b78;
-  --hazard:#d8732c;
-  --muted:#5d6a60;
-  --shadow: rgba(16,33,28,0.10);
+  --accent:#c9631a;
+  --muted:#55625a;
+  --shadow:rgba(16,33,28,0.10);
+  --radius:10px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Inter',system-ui,sans-serif;
-  line-height:1.65;
-  color:var(--ink);
-  background:var(--paper);
-  overflow-x:hidden;
-}
-h1,h2,h3{font-family:'Space Grotesk',sans-serif; letter-spacing:-0.01em;}
-.mono{font-family:'IBM Plex Mono',monospace;}
-.container{max-width:1180px; margin:0 auto; padding:0 24px;}
+html{scroll-behavior:smooth;scroll-padding-top:70px;}
+body{font-family:'Inter',system-ui,sans-serif;line-height:1.65;color:var(--ink);background:var(--paper);overflow-x:hidden;}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;line-height:1.2;}
+a{color:inherit;}
+.container{max-width:1120px;margin:0 auto;padding:0 24px;}
+.skip-link{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:6px;z-index:200;}
+.skip-link:focus{left:8px;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px;}
 
-.eyebrow{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.78rem;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--map-green);
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:14px;
-}
-.eyebrow::before{content:"//"; color:var(--hazard); font-weight:600;}
+/* ---------- HERO ---------- */
+.hero{background:radial-gradient(ellipse at 80% -10%,rgba(63,176,176,0.18),transparent 55%),var(--ink);color:#eef2ef;padding:72px 0 0;position:relative;overflow:hidden;}
+.contour-bg{position:absolute;inset:0;width:100%;height:100%;opacity:0.15;pointer-events:none;}
+.hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;position:relative;z-index:1;padding-bottom:56px;}
+.coords{font-size:0.86rem;color:#a6bab0;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.coords i{color:var(--accent);}
+.hero h1{font-size:clamp(2.2rem,5vw,3.3rem);font-weight:700;color:#fff;margin-bottom:10px;}
+.hero .title{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:500;color:#bfe3da;margin-bottom:18px;}
+.hero .lede{color:#cdd9d2;max-width:520px;margin-bottom:28px;font-size:1.05rem;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+.avail{font-size:0.88rem;color:#a6bab0;}
+.avail::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#5fd08f;margin-right:8px;}
 
-/* ===== HEADER ===== */
-header{
-  background:
-    radial-gradient(ellipse at 80% -10%, rgba(63,176,176,0.18), transparent 55%),
-    var(--ink);
-  color:#eef2ef;
-  padding:64px 0 0;
-  position:relative;
-  overflow:hidden;
-}
-.contour-bg{
-  position:absolute; inset:0; opacity:0.16; pointer-events:none;
-}
-.header-content{
-  display:grid;
-  grid-template-columns:1.15fr 0.85fr;
-  gap:40px;
-  align-items:center;
-  position:relative; z-index:1;
-  padding-bottom:48px;
-}
-.id-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:14px;
-  background:rgba(246,242,232,0.05);
-  border:1px dashed rgba(246,242,232,0.35);
-  border-radius:10px;
-  padding:10px 16px;
-  margin-bottom:24px;
-}
-.id-badge .id-chip{
-  width:38px; height:38px; border-radius:8px;
-  background:linear-gradient(135deg, var(--map-green), var(--slate));
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1rem; color:#fff;
-}
-.id-badge .id-text{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.08em; color:#cfd9d2; line-height:1.5;}
-.id-badge .id-text strong{color:#fff; font-weight:600;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:7px;text-decoration:none;font-weight:600;font-size:0.92rem;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:background 0.2s,border-color 0.2s;}
+.btn-accent{background:var(--accent);color:#fff;}
+.btn-accent:hover{background:#ad5314;}
+.btn-ghost{border-color:rgba(238,242,239,0.4);color:#eef2ef;}
+.btn-ghost:hover{border-color:#fff;}
+.btn-dark{background:var(--ink);color:#fff;}
+.btn-dark:hover{background:var(--green-deep);}
+.btn-line{border-color:var(--line);color:var(--ink);background:transparent;}
+.btn-line:hover{border-color:var(--ink);}
 
-.coord-tag{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.78rem;
-  color:#9fb3a8;
-  letter-spacing:0.05em;
-  margin-bottom:18px;
-}
-.coord-tag i{color:var(--hazard); margin-right:6px;}
+.video-frame{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(246,242,232,0.2);box-shadow:0 20px 50px rgba(0,0,0,0.45);background:#0b1713;aspect-ratio:16/10;}
+.video-frame video{width:100%;height:100%;object-fit:cover;display:block;}
+.video-caption{position:absolute;left:12px;bottom:12px;background:rgba(16,33,28,0.78);color:#e3ece7;font-size:0.78rem;padding:5px 10px;border-radius:4px;}
 
-.header-text h1{font-size:2.6rem; font-weight:700; color:#fff; margin-bottom:12px;}
-.header-text .role{font-size:1.1rem; color:#cdd9d2; max-width:560px; margin-bottom:24px;}
+.facts{background:var(--ink-soft);border-top:1px solid rgba(246,242,232,0.08);position:relative;z-index:1;}
+.facts-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.fact{padding:26px 20px;border-right:1px solid rgba(246,242,232,0.08);}
+.fact:last-child{border-right:none;}
+.fact strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.9rem;font-weight:600;color:#bfe3da;line-height:1.1;margin-bottom:6px;}
+.fact span{font-size:0.88rem;color:#a6bab0;}
 
-.value-props{display:flex; flex-wrap:wrap; gap:10px;}
-.prop-tag{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.78rem;
-  letter-spacing:0.03em;
-  background:rgba(63,176,176,0.12);
-  border:1px solid rgba(63,176,176,0.35);
-  color:#bfe3da;
-  padding:7px 14px;
-  border-radius:5px;
-}
+/* ---------- NAV ---------- */
+nav{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:12px 0;gap:16px;}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;display:flex;align-items:center;gap:8px;text-decoration:none;}
+.logo i{color:var(--accent);}
+.nav-links{display:flex;gap:26px;align-items:center;}
+.nav-links a{text-decoration:none;color:var(--muted);font-weight:500;font-size:0.92rem;}
+.nav-links a:hover{color:var(--green);}
+.nav-links .btn{padding:8px 16px;color:#fff;font-size:0.85rem;}
+.nav-links .btn:hover{color:#fff;}
 
-.video-frame{
-  position:relative;
-  border-radius:10px;
-  overflow:hidden;
-  border:1px solid rgba(246,242,232,0.18);
-  box-shadow:0 20px 50px rgba(0,0,0,0.45);
-}
-.video-frame video{width:100%; display:block;}
-.video-tag{
-  position:absolute; top:12px; left:12px;
-  background:rgba(16,33,28,0.75);
-  border:1px solid rgba(246,242,232,0.3);
-  color:#dfe9e3;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.68rem; letter-spacing:0.08em;
-  padding:5px 10px; border-radius:4px;
-}
-.video-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--hazard); display:inline-block; margin-right:6px;}
+/* ---------- SECTIONS ---------- */
+.band{padding:84px 0;}
+.band-alt{background:var(--card);}
+.section-head{max-width:640px;margin-bottom:40px;}
+.section-head h2{font-size:2rem;margin-bottom:10px;}
+.section-head p{color:var(--muted);}
 
-/* ===== CONSOLE STAT STRIP ===== */
-.console{
-  background:var(--ink-soft);
-  border-top:1px solid rgba(246,242,232,0.08);
-}
-.console-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-}
-.console-cell{
-  padding:30px 20px;
-  text-align:center;
-  border-right:1px solid rgba(246,242,232,0.08);
-}
-.console-cell:last-child{border-right:none;}
-.console-cell h3{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:2rem; font-weight:600; color:#bfe3da; margin-bottom:6px;
-}
-.console-cell p{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#8aa097;
-}
 
-/* ===== NAV ===== */
-nav{
-  background:var(--paper-card);
-  border-bottom:1px solid var(--line);
-  position:sticky; top:0; z-index:100;
-}
-.nav-container{display:flex; justify-content:space-between; align-items:center; padding:14px 0;}
-.logo{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.15rem; color:var(--ink); display:flex; align-items:center; gap:8px;}
-.logo i{color:var(--hazard);}
-.nav-links{display:flex; gap:28px;}
-.nav-links a{
-  text-decoration:none; color:var(--muted); font-weight:500; font-size:0.94rem;
-  transition:color 0.25s; position:relative;
-}
-.nav-links a:hover{color:var(--map-green);}
+/* ---------- SECTORS ---------- */
+.sectors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.sector{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;display:flex;flex-direction:column;}
+.sector i.sector-icon{font-size:1.5rem;color:var(--green);margin-bottom:14px;}
+.sector h3{font-size:1.05rem;margin-bottom:8px;}
+.sector p{color:var(--muted);font-size:0.92rem;margin-bottom:14px;}
+.proof{font-size:0.86rem;border-top:1px solid var(--line);padding-top:10px;margin-top:auto;}
+.proof strong{display:block;font-weight:600;color:var(--green-deep);font-size:0.8rem;margin-bottom:2px;}
+.proof a{display:inline-block;margin-top:6px;font-weight:600;color:var(--accent);text-decoration:none;font-size:0.84rem;}
+.proof a:hover{text-decoration:underline;}
 
-/* ===== SECTION HEADERS ===== */
-.section-title{margin-bottom:46px; max-width:680px;}
-.section-title h2{font-size:2rem; color:var(--ink); margin-bottom:12px;}
-.section-title p{color:var(--muted);}
+/* ---------- WORK ---------- */
+.featured{display:grid;grid-template-columns:1.1fr 1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);box-shadow:0 14px 34px var(--shadow);margin-bottom:44px;}
+.featured-media{min-height:340px;background-size:cover;background-position:center;position:relative;background-color:var(--slate);}
+.pin{position:absolute;top:14px;left:14px;background:var(--accent);color:#fff;font-size:0.78rem;font-weight:600;padding:5px 11px;border-radius:4px;}
+.featured-body{padding:36px;display:flex;flex-direction:column;}
+.featured-body h3{font-size:1.4rem;margin-bottom:12px;}
+.featured-body p{color:var(--muted);margin-bottom:18px;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;}
+.tag{background:rgba(47,107,79,0.1);color:var(--green-deep);padding:4px 10px;border-radius:4px;font-size:0.78rem;font-weight:500;}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;}
 
-/* ===== FOCUS AREAS ===== */
-.focus-areas{padding:90px 0; background:var(--paper-card);}
-.focus-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:22px;}
-.focus-card{
-  position:relative;
-  background:var(--paper-card);
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:30px 22px;
-  transition:transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-}
-.focus-card:hover{transform:translateY(-6px); box-shadow:0 14px 30px var(--shadow); border-color:var(--map-green);}
-.focus-code{
-  position:absolute; top:16px; right:16px;
-  font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--hazard);
-  border:1px solid var(--line); border-radius:4px; padding:2px 7px;
-}
-.focus-card i{font-size:1.8rem; color:var(--map-green); margin-bottom:18px; display:block;}
-.focus-card h3{font-size:1.05rem; margin-bottom:10px; color:var(--ink);}
-.focus-card p{color:var(--muted); font-size:0.92rem;}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+.filter-btn{padding:8px 16px;background:transparent;border:1px solid var(--line);border-radius:6px;cursor:pointer;font-family:inherit;font-size:0.88rem;font-weight:500;color:var(--muted);}
+.filter-btn:hover{border-color:var(--ink);color:var(--ink);}
+.filter-btn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;}
 
-/* ===== LEADERSHIP ===== */
-.leadership{padding:90px 0; background:var(--paper);}
-.leadership-block{
-  display:grid; grid-template-columns:1fr 1fr; gap:46px; align-items:center; margin-bottom:56px;
-}
-.leadership-block:last-child{margin-bottom:0;}
-.leadership-tag{
-  display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:0.72rem;
-  letter-spacing:0.08em; text-transform:uppercase; color:#fff; background:var(--map-green);
-  padding:5px 11px; border-radius:4px; margin-bottom:14px;
-}
-.leadership-role{
-  background:var(--paper-card); border:1px solid var(--line); border-radius:10px; padding:26px;
-}
-.leadership-role h3{margin-bottom:14px; color:var(--ink); font-size:1.2rem;}
-.leadership-role p{color:var(--muted); margin-bottom:16px;}
-.leadership-role ul{margin-left:18px; color:var(--muted); font-size:0.93rem;}
-.leadership-role ul li{margin-bottom:6px;}
-.leadership-role strong{font-family:'IBM Plex Mono',monospace; font-size:0.8rem; letter-spacing:0.04em; color:var(--ink);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;}
+.card[hidden]{display:none;}
+.card-media{height:150px;position:relative;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:14px;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;overflow:hidden;}
+.card-media.no-img::before{content:"";position:absolute;inset:0;opacity:0.22;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='white' stroke-width='1.4'%3E%3Cpath d='M-10,160 C80,130 140,185 220,150 C300,115 350,160 410,130'/%3E%3Cpath d='M-10,125 C70,95 150,150 230,115 C310,80 360,125 410,95'/%3E%3Cpath d='M-10,90 C60,60 160,115 240,80 C320,45 370,90 410,60'/%3E%3Cpath d='M-10,55 C60,25 170,80 250,45 C330,10 380,55 410,25'/%3E%3C/g%3E%3C/svg%3E");background-size:cover;}
+.card-media span{position:relative;z-index:1;background:rgba(16,33,28,0.6);padding:3px 10px;border-radius:4px;font-size:0.82rem;}
+.tone-disaster{background-color:#8a4a2a;}
+.tone-water{background-color:var(--slate);}
+.tone-agri{background-color:var(--green);}
+.tone-land{background-color:var(--green-deep);}
+.card-body{padding:20px;display:flex;flex-direction:column;flex:1;}
+.card-body h3{font-size:1.08rem;margin-bottom:8px;}
+.card-body p{color:var(--muted);font-size:0.92rem;margin-bottom:16px;}
+.card-body .tags{margin-bottom:16px;}
+.card-body .actions .btn{padding:9px 16px;font-size:0.86rem;}
+.note{font-size:0.84rem;color:var(--muted);font-style:italic;margin-top:auto;}
 
-.leadership-text h2{font-size:1.7rem; margin-bottom:16px; color:var(--ink);}
-.leadership-text p{margin-bottom:16px; color:var(--muted);}
-.leadership-highlight{
-  background:var(--paper-card); padding:22px; border-radius:10px; border:1px solid var(--line);
-  border-left:3px solid var(--hazard); margin-bottom:18px;
-}
-.leadership-highlight h3{margin-bottom:10px; color:var(--ink); font-size:1.02rem;}
-.leadership-highlight ul{margin-left:18px; color:var(--muted); font-size:0.92rem;}
-.leadership-highlight ul li{margin-bottom:5px;}
+/* ---------- EXPERIENCE ---------- */
+.timeline{list-style:none;border-left:2px solid var(--line);margin-left:6px;}
+.timeline li{display:grid;grid-template-columns:190px 1fr;gap:28px;padding:0 0 38px 28px;position:relative;}
+.timeline li:last-child{padding-bottom:0;}
+.timeline li::before{content:"";position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--green);}
+.band-alt .timeline li::before{background:var(--card);}
+.when{font-weight:600;color:var(--green-deep);font-size:0.92rem;padding-top:2px;}
+.what h3{font-size:1.15rem;margin-bottom:2px;}
+.what .org{color:var(--muted);margin-bottom:10px;font-size:0.95rem;}
+.what ul{margin-left:18px;color:var(--ink);font-size:0.95rem;}
+.what li{display:list-item;padding:0;margin-bottom:6px;grid-template-columns:none;}
+.what li::before{content:none;}
 
-.leadership-image{
-  position:relative; height:380px; border-radius:10px; overflow:hidden;
-  border:1px solid var(--line); box-shadow:0 14px 30px var(--shadow);
-  background:linear-gradient(135deg, var(--slate), var(--map-green-deep));
-}
-.leadership-image.img-bg{background-size:cover; background-position:center;}
+/* ---------- ABOUT / SKILLS ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;}
+.about-grid p{color:var(--muted);margin-bottom:16px;max-width:60ch;}
+.skill-group{padding:16px 0;border-top:1px solid var(--line);}
+.skill-group:first-child{border-top:none;padding-top:0;}
+.skill-group h3{font-size:0.98rem;margin-bottom:4px;}
+.skill-group p{margin:0;color:var(--muted);font-size:0.94rem;}
 
-/* carousel */
-.carousel{position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; overflow:hidden;}
-.carousel-track{display:flex; transition:transform 0.45s ease; width:100%; height:100%;}
-.carousel-slide{min-width:100%; height:100%; object-fit:cover;}
-.carousel-btn{
-  position:absolute; top:50%; transform:translateY(-50%);
-  background:rgba(16,33,28,0.55); color:#fff; border:none; padding:9px 13px;
-  font-size:18px; cursor:pointer; border-radius:5px; z-index:5;
-}
+/* ---------- CREDENTIALS ---------- */
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.cred-grid h3{font-size:1.15rem;margin-bottom:14px;}
+.cred-list{list-style:none;}
+.cred-list li{padding:12px 0;border-top:1px solid var(--line);font-size:0.95rem;}
+.cred-list li:first-child{border-top:none;padding-top:0;}
+.cred-list strong{display:block;font-weight:600;}
+.cred-list span{color:var(--muted);font-size:0.9rem;}
+.cred-block + .cred-block{margin-top:34px;}
+
+/* ---------- LEADERSHIP ---------- */
+.lead-block{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+.lead-block + .lead-block{margin-top:56px;}
+.lead-block h3{font-size:1.45rem;margin-bottom:6px;}
+.lead-role{color:var(--green-deep);font-weight:600;font-size:0.92rem;margin-bottom:14px;}
+.lead-block p{color:var(--muted);margin-bottom:14px;}
+.lead-block ul{margin:0 0 18px 18px;color:var(--muted);font-size:0.93rem;}
+.lead-block li{margin-bottom:5px;}
+.lead-img{height:360px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 14px 30px var(--shadow);background:linear-gradient(135deg,var(--slate),var(--green-deep));background-size:cover;background-position:center;position:relative;}
+.carousel{position:relative;width:100%;height:100%;overflow:hidden;}
+.carousel-track{display:flex;height:100%;transition:transform 0.4s ease;}
+.carousel-slide{min-width:100%;height:100%;object-fit:cover;}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(16,33,28,0.6);color:#fff;border:none;width:38px;height:38px;font-size:16px;cursor:pointer;border-radius:6px;z-index:5;}
 .carousel-btn.prev{left:10px;} .carousel-btn.next{right:10px;}
-.carousel-dots{position:absolute; bottom:12px; left:50%; transform:translateX(-50%); display:flex; gap:7px; z-index:6;}
-.carousel-dots button{width:8px; height:8px; border-radius:50%; border:none; background:rgba(255,255,255,0.55); cursor:pointer; padding:0;}
-.carousel-dots button.active{background:var(--hazard);}
+.carousel-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:6;}
+.carousel-dots button{width:9px;height:9px;border-radius:50%;border:none;background:rgba(255,255,255,0.6);cursor:pointer;padding:0;}
+.carousel-dots button.active{background:var(--accent);}
 
-/* ===== PROJECTS ===== */
-.projects{padding:90px 0; background:var(--paper-card);}
-.project-filters{display:flex; justify-content:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:40px;}
-.filter-btn{
-  padding:8px 18px; background:transparent; border:1px solid var(--line); border-radius:5px;
-  cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--muted); transition:all 0.25s;
-}
-.filter-btn.active, .filter-btn:hover{background:var(--ink); color:#fff; border-color:var(--ink);}
+/* ---------- CONTACT ---------- */
+.contact{background:var(--ink);color:#eef2ef;padding:84px 0;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.contact h2{font-size:2rem;margin-bottom:14px;color:#fff;}
+.contact p{color:#c2cfc8;max-width:46ch;margin-bottom:24px;}
+.contact-links{list-style:none;}
+.contact-links li{border-top:1px solid rgba(238,242,239,0.14);}
+.contact-links li:last-child{border-bottom:1px solid rgba(238,242,239,0.14);}
+.contact-links a{display:flex;align-items:center;gap:16px;padding:16px 4px;text-decoration:none;color:#eef2ef;}
+.contact-links a:hover{color:#bfe3da;}
+.contact-links i{width:24px;text-align:center;color:var(--accent);font-size:1.15rem;}
+.contact-links small{display:block;color:#93a89d;font-size:0.8rem;}
 
-/* featured project */
-.featured-project{
-  display:grid; grid-template-columns:1.1fr 1fr; gap:0; margin-bottom:50px;
-  border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--paper-card);
-  box-shadow:0 16px 36px var(--shadow);
-}
-.featured-media{min-height:340px; background-size:cover; background-position:center; position:relative;}
-.featured-media .tag-pin{
-  position:absolute; top:16px; left:16px; background:var(--hazard); color:#fff;
-  font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em;
-  padding:5px 10px; border-radius:4px;
-}
-.featured-body{padding:38px; display:flex; flex-direction:column;}
-.featured-body h3{font-size:1.4rem; margin-bottom:14px; color:var(--ink);}
-.featured-body p{color:var(--muted); margin-bottom:20px;}
+footer{background:var(--ink-soft);color:#b9c8bf;padding:22px 0;font-size:0.85rem;}
+.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 
-.projects-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(330px,1fr)); gap:26px;}
-.project-card{
-  background:var(--paper-card); border:1px solid var(--line); border-radius:10px; overflow:hidden;
-  display:flex; flex-direction:column; transition:transform 0.25s, box-shadow 0.25s;
-}
-.project-card:hover{transform:translateY(-5px); box-shadow:0 14px 30px var(--shadow);}
-.project-image{
-  height:190px; background:linear-gradient(135deg, var(--slate), var(--map-green-deep));
-  display:flex; align-items:center; justify-content:center; color:#fff; font-size:2.6rem; position:relative;
-}
-.project-image.img-bg{background-size:cover; background-position:center; font-size:0;}
-.project-image .corner-code{
-  position:absolute; top:10px; left:10px; background:rgba(16,33,28,0.7); color:#dfe9e3;
-  font-family:'IBM Plex Mono',monospace; font-size:0.66rem; padding:3px 8px; border-radius:4px;
-}
-.project-content{padding:22px; display:flex; flex-direction:column; flex:1;}
-.project-content h3{margin-bottom:10px; color:var(--ink); font-size:1.05rem;}
-.project-content p{color:var(--muted); margin-bottom:18px; font-size:0.92rem;}
-.project-tags{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px;}
-.project-tag{
-  font-family:'IBM Plex Mono',monospace; background:rgba(47,107,79,0.1); color:var(--map-green);
-  padding:4px 10px; border-radius:4px; font-size:0.72rem;
-}
-.project-links{display:flex; gap:10px; margin-top:auto;}
-.btn{
-  display:inline-block; padding:10px 18px; border-radius:6px; text-decoration:none;
-  font-weight:600; font-size:0.88rem; transition:all 0.25s; text-align:center; flex:1;
-}
-.btn-primary{background:var(--ink); color:#fff;}
-.btn-primary:hover{background:var(--map-green-deep);}
-.btn-outline{background:transparent; border:1px solid var(--line); color:var(--ink);}
-.btn-outline:hover{border-color:var(--ink);}
-
-/* ===== ABOUT ===== */
-.about{padding:90px 0; background:var(--paper);}
-.about-content{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;}
-.about-text h2{font-size:2rem; margin-bottom:18px; color:var(--ink);}
-.about-text p{margin-bottom:16px; color:var(--muted);}
-.skills{display:flex; flex-wrap:wrap; gap:9px; margin-top:18px;}
-.skill{
-  font-family:'IBM Plex Mono',monospace; background:var(--paper-card); border:1px solid var(--line);
-  color:var(--ink); padding:7px 13px; border-radius:5px; font-size:0.82rem;
-}
-.about-image{
-  background-size:cover; background-position:center; height:380px; border-radius:10px;
-  border:1px solid var(--line); box-shadow:0 14px 30px var(--shadow);
-  display:flex; align-items:flex-end; padding:20px;
-}
-.about-image span{
-  background:rgba(16,33,28,0.72); color:#fff; font-family:'IBM Plex Mono',monospace;
-  font-size:0.78rem; padding:8px 12px; border-radius:5px;
-}
-
-/* ===== CONTACT ===== */
-.contact{padding:90px 0; background:var(--paper-card);}
-.contact-content{display:grid; grid-template-columns:1fr 1fr; gap:50px;}
-.contact-info{display:flex; flex-direction:column; gap:18px;}
-.contact-item{
-  display:flex; align-items:center; gap:16px; background:var(--paper); border:1px solid var(--line);
-  border-radius:8px; padding:16px 18px;
-}
-.contact-item i{font-size:1.25rem; color:var(--map-green); width:30px;}
-.contact-item h3{font-size:0.78rem; font-family:'IBM Plex Mono',monospace; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin-bottom:3px;}
-.contact-item p{color:var(--ink); font-weight:500;}
-.contact-item a{color:var(--ink); text-decoration:none;}
-.contact-item a:hover{color:var(--map-green);}
-
-.contact-form{background:var(--paper); padding:30px; border-radius:10px; border:1px solid var(--line);}
-.form-group{margin-bottom:18px;}
-.form-group label{display:block; margin-bottom:7px; font-weight:500; font-size:0.88rem; color:var(--ink);}
-.form-group input, .form-group textarea{
-  width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:6px;
-  font-family:inherit; background:var(--paper-card); transition:border-color 0.25s;
-}
-.form-group input:focus, .form-group textarea:focus{border-color:var(--map-green); outline:none;}
-.form-group textarea{min-height:110px; resize:vertical;}
-
-/* ===== CTA ===== */
-.cta-banner{background:var(--ink); color:#eef2ef; padding:70px 0; text-align:center;}
-.cta-banner h2{font-size:1.9rem; margin-bottom:16px;}
-.cta-banner p{font-size:1.05rem; margin-bottom:28px; color:#c2cfc8; max-width:600px; margin-left:auto; margin-right:auto;}
-.cta-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
-.cta-button{
-  display:inline-flex; align-items:center; gap:8px; background:var(--hazard); color:#fff;
-  padding:14px 26px; border-radius:7px; text-decoration:none; font-weight:600; transition:all 0.25s;
-}
-.cta-button:hover{transform:translateY(-2px); box-shadow:0 10px 20px rgba(0,0,0,0.3);}
-.cta-button.alt{background:transparent; border:1px solid rgba(238,242,239,0.35); color:#eef2ef;}
-
-/* ===== FOOTER ===== */
-footer{background:var(--ink-soft); color:#cfd9d2; padding:34px 0;}
-.footer-content{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;}
-.footer-content .logo{color:#eef2ef;}
-.social-links{display:flex; gap:16px;}
-.social-links a{color:#cfd9d2; font-size:1.15rem; transition:color 0.25s;}
-.social-links a:hover{color:#fff;}
-.copyright{text-align:center; padding-top:18px; margin-top:18px; border-top:1px solid rgba(238,242,239,0.1); font-size:0.84rem; opacity:0.7; font-family:'IBM Plex Mono',monospace;}
-
-/* ===== RESPONSIVE ===== */
+/* ---------- RESPONSIVE ---------- */
 @media (max-width:992px){
-  .about-content, .contact-content, .leadership-block, .header-content, .featured-project{grid-template-columns:1fr;}
-  .console-grid{grid-template-columns:repeat(2,1fr);}
-  .console-cell:nth-child(2){border-right:none;}
+  .sectors-grid{grid-template-columns:repeat(2,1fr);}
+  .hero-grid,.featured,.about-grid,.cred-grid,.lead-block,.contact-grid{grid-template-columns:1fr;}
+  .facts-grid{grid-template-columns:repeat(2,1fr);}
+  .fact:nth-child(2){border-right:none;}
+  .fact:nth-child(-n+2){border-bottom:1px solid rgba(246,242,232,0.08);}
+  .lead-block .lead-img{order:-1;}
 }
-@media (max-width:768px){
-  .nav-container{flex-direction:column; gap:14px;}
-  .nav-links{gap:16px; flex-wrap:wrap; justify-content:center;}
-  .projects-grid{grid-template-columns:1fr;}
-  .header-text h1{font-size:2rem;}
-  .console-grid{grid-template-columns:repeat(2,1fr);}
+@media (max-width:700px){
+  .nav-links a:not(.btn){display:none;}
+  .timeline li{grid-template-columns:1fr;gap:6px;}
+  .grid,.sectors-grid{grid-template-columns:1fr;}
+  .band{padding:60px 0;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .carousel-track{transition:none;}
 }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#work">Skip to selected work</a>
 
-<header>
-  <svg class="contour-bg" viewBox="0 0 1200 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<header class="hero">
+  <svg class="contour-bg" viewBox="0 0 1200 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M-50,420 C150,380 250,460 450,400 C650,340 750,420 950,380 C1100,350 1180,390 1260,360" stroke="#3fb0b0" stroke-width="1.5" fill="none"/>
     <path d="M-50,360 C150,320 280,400 480,340 C680,280 780,360 980,320 C1130,290 1200,330 1280,300" stroke="#3fb0b0" stroke-width="1.5" fill="none"/>
     <path d="M-50,300 C150,260 300,340 500,280 C700,220 800,300 1000,260 C1150,230 1220,270 1300,240" stroke="#3fb0b0" stroke-width="1.5" fill="none"/>
     <path d="M-50,240 C150,200 320,280 520,220 C720,160 820,240 1020,200 C1170,170 1240,210 1320,180" stroke="#3fb0b0" stroke-width="1.5" fill="none"/>
   </svg>
   <div class="container">
-    <div class="header-content">
-      <div class="header-text">
-        <div class="id-badge">
-          <div class="id-chip">HN</div>
-          <div class="id-text">OPERATOR ID<br><strong>NKHUMBWA, HAMZA</strong></div>
-        </div>
-        <div class="coord-tag"><i class="fas fa-map-pin"></i>15.7861°S · 35.0058°E — BLANTYRE, MALAWI</div>
+    <div class="hero-grid">
+      <div>
+        <div class="coords"><i class="fas fa-location-dot" aria-hidden="true"></i>Blantyre, Malawi (15.79°S, 35.01°E)</div>
         <h1>Hamza Nkhumbwa</h1>
-        <p class="role">Geo-Informatics Specialist — transforming spatial data into actionable insight for disaster management, climate action, agriculture, natural resources, and public health.</p>
-        <div class="value-props">
-          <span class="prop-tag">GIS SPECIALIST</span>
-          <span class="prop-tag">REMOTE SENSING</span>
-          <span class="prop-tag">DISASTER RISK ANALYST</span>
-          <span class="prop-tag">DRONE / UAV OPERATIONS</span>
-          <span class="prop-tag">COMMUNITY LEADER</span>
+        <p class="title">GIS & Data Analyst | Earth Observation Specialist | Licensed UAV Pilot</p>
+        <p class="lede">I turn spatial and non-spatial data, from drone imagery and satellite data to field surveys and permit records, into maps, dashboards and decisions for water, farming, floods and growing cities.</p>
+        <div class="hero-actions">
+          <a class="btn btn-accent" href="https://hamza-nkhumbwa.github.io/datasets/Hamza_Nkhumbwa_CV_2026.pdf" download><i class="fas fa-download" aria-hidden="true"></i>Download CV</a>
+          <a class="btn btn-ghost" href="#work">See selected work</a>
         </div>
+        <p class="avail">Open to GIS, data analysis, remote sensing and UAV roles</p>
       </div>
       <div class="video-frame">
-        <span class="video-tag"><span class="dot"></span>EARTH OBSERVATION</span>
-        <video autoplay muted loop playsinline>
+        <video id="heroVideo" autoplay muted loop playsinline aria-label="Looping footage of Earth from space">
           <source src="https://hamza-nkhumbwa.github.io/datasets/earth.mp4" type="video/mp4">
         </video>
+        <span class="video-caption">Earth observation</span>
       </div>
     </div>
   </div>
-  <div class="console">
+  <div class="facts">
     <div class="container">
-      <div class="console-grid">
-        <div class="console-cell"><h3>15+</h3><p>Projects Completed</p></div>
-        <div class="console-cell"><h3>8</h3><p>Sectors Served</p></div>
-        <div class="console-cell"><h3>5</h3><p>Years Experience</p></div>
-        <div class="console-cell"><h3>10+</h3><p>Technologies Mastered</p></div>
+      <div class="facts-grid">
+        <div class="fact"><strong>800 ha</strong><span>Estate imagery processed for Illovo</span></div>
+        <div class="fact"><strong>305 ha</strong><span>Mapped in Salima with the ADDA Emergency Unit</span></div>
+        <div class="fact"><strong>4,650</strong><span>Boreholes in the NWRA groundwater database</span></div>
+        <div class="fact"><strong>Licensed</strong><span>Remote pilot, Malawi Civil Aviation Authority</span></div>
       </div>
     </div>
   </div>
 </header>
 
-<nav>
-  <div class="container nav-container">
-    <div class="logo"><i class="fas fa-location-crosshairs"></i>Mapping Change</div>
+<nav aria-label="Main">
+  <div class="container nav-inner">
+    <a class="logo" href="#top"><i class="fas fa-location-crosshairs" aria-hidden="true"></i>Hamza Nkhumbwa</a>
     <div class="nav-links">
-      <a href="#focus">Focus Areas</a>
+      <a href="#sectors">Sectors</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">Skills</a>
+      <a href="#credentials">Credentials</a>
       <a href="#leadership">Leadership</a>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
       <a href="#contact">Contact</a>
+      <a class="btn btn-dark" href="Hamza_Nkhumbwa_CV_2026.pdf" download>CV</a>
     </div>
   </div>
 </nav>
 
-<section class="focus-areas" id="focus">
+<main id="top">
+
+<!-- ================= SECTORS ================= -->
+<section class="band band-alt" id="sectors">
   <div class="container">
-    <div class="eyebrow">CAPABILITY AREAS</div>
-    <div class="section-title">
-      <h2>GIS and drone application areas</h2>
-      <p>Applying geospatial technology across sectors to drive informed decision-making and sustainable development.</p>
+    <div class="section-head">
+      <h2>Sectors I can work in</h2>
+      <p>GIS, data analysis and drones apply wherever decisions depend on location. Each card shows where I have already done the work, or which of my skills carry over.</p>
     </div>
-    <div class="focus-grid">
-      <div class="focus-card"><span class="focus-code">DM</span><i class="fas fa-exclamation-triangle"></i><h3>Disaster Management</h3><p>Risk assessment, early warning systems, and post-disaster mapping to enhance community resilience and emergency response.</p></div>
-      <div class="focus-card"><span class="focus-code">AG</span><i class="fas fa-leaf"></i><h3>Agriculture</h3><p>Precision farming, crop monitoring, soil analysis, and yield prediction to optimize agricultural productivity.</p></div>
-      <div class="focus-card"><span class="focus-code">NR</span><i class="fas fa-tint"></i><h3>Natural Resources</h3><p>Water resources management, forest monitoring, biodiversity conservation, and land use planning.</p></div>
-      <div class="focus-card"><span class="focus-code">EN</span><i class="fas fa-bolt"></i><h3>Energy</h3><p>Renewable energy site selection, infrastructure planning, and distribution optimization using spatial analysis.</p></div>
-      <div class="focus-card"><span class="focus-code">PH</span><i class="fas fa-heartbeat"></i><h3>Public Health</h3><p>Disease mapping, healthcare accessibility analysis, and environmental health risk assessment.</p></div>
+    <div class="sectors-grid">
+
+      <article class="sector">
+        <i class="fas fa-triangle-exclamation sector-icon" aria-hidden="true"></i>
+        <h3>Disaster management</h3>
+        <p>Flood and landslide risk mapping, post-disaster analysis and preparedness mapping to support community resilience and emergency response.</p>
+        <div class="proof"><strong>Where I've done it</strong>Chikwawa flood analysis, Soche landslide risk, Salima baseline mapping with ADDA and UNICEF.<br><a href="#work" data-goto="disaster">See disaster risk projects</a></div>
+      </article>
+
+      <article class="sector">
+        <i class="fas fa-leaf sector-icon" aria-hidden="true"></i>
+        <h3>Agriculture</h3>
+        <p>Crop and estate monitoring, soil fertility assessment and precision farming dashboards that guide planting and harvest decisions.</p>
+        <div class="proof"><strong>Where I've done it</strong>Illovo sugar estates (800 ha of imagery) and the AgriSight dashboard.<br><a href="#work" data-goto="agri">See agriculture projects</a></div>
+      </article>
+
+      <article class="sector">
+        <i class="fas fa-droplet sector-icon" aria-hidden="true"></i>
+        <h3>Natural resources and water</h3>
+        <p>Water resources management, catchment delineation, forest monitoring, land cover mapping and biodiversity planning.</p>
+        <div class="proof"><strong>Where I've done it</strong>NWRA groundwater database and dashboard, SBAPP national land cover, Dzalanyama Forest.<br><a href="#work" data-goto="water">See water projects</a></div>
+      </article>
+
+      <article class="sector">
+        <i class="fas fa-shield-halved sector-icon" aria-hidden="true"></i>
+        <h3>Security and surveillance</h3>
+        <p>Drone patrols, perimeter and estate monitoring, and aerial imagery for surveillance, incident response and asset protection.</p>
+        <div class="proof"><strong>Where I've done it</strong>Security drone pilot flying continuous patrols around an Illovo estate.<br><a href="#experience">See the role</a></div>
+      </article>
+
+      <article class="sector">
+        <i class="fas fa-city sector-icon" aria-hidden="true"></i>
+        <h3>Urban planning</h3>
+        <p>Parcel digitising, site plans, planning maps and topographic surveys for city and town planning.</p>
+        <div class="proof"><strong>Where I've done it</strong>Lilongwe City Council Town Planning Office and the UN Urban Resilience Plan.<br><a href="#work" data-goto="land">See land and urban projects</a></div>
+      </article>
+
+      <article class="sector">
+        <i class="fas fa-chart-column sector-icon" aria-hidden="true"></i>
+        <h3>Data analytics and reporting</h3>
+        <p>Dashboards, statistical analysis and reports built from spatial and non-spatial data, for any organisation.</p>
+        <div class="proof"><strong>Where I've done it</strong>NWRA real-time dashboard, a 4,650-borehole database, Power BI and SPSS work.<br><a href="#work" data-goto="data">See dashboards and data</a></div>
+      </article>
+
+      <article class="sector">
+        <i class="fas fa-bolt sector-icon" aria-hidden="true"></i>
+        <h3>Energy</h3>
+        <p>Site selection for renewable energy, infrastructure planning and network analysis using spatial analysis.</p>
+        <div class="proof"><strong>Skills that carry over</strong>Suitability and terrain analysis, drone site surveys, GNSS mapping.</div>
+      </article>
+
+      <article class="sector">
+        <i class="fas fa-heart-pulse sector-icon" aria-hidden="true"></i>
+        <h3>Public health</h3>
+        <p>Disease mapping, healthcare accessibility analysis and environmental health risk assessment.</p>
+        <div class="proof"><strong>Skills that carry over</strong>Field data collection with KoboCollect, spatial analysis, dashboards.</div>
+      </article>
+
     </div>
   </div>
 </section>
 
-<section class="leadership" id="leadership">
+<!-- ================= WORK ================= -->
+<section class="band" id="work">
   <div class="container">
-    <div class="eyebrow">FIELD LEADERSHIP</div>
-    <div class="section-title">
-      <h2>Community leadership &amp; outreach</h2>
-      <p>Driving the geospatial community forward through knowledge sharing, mentorship, and collaborative initiatives.</p>
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <p>Projects across flood and landslide risk, water resources, agriculture, land cover and urban planning.</p>
     </div>
 
-    <div class="leadership-block">
-      <div class="leadership-role">
-        <span class="leadership-tag">Team Lead</span>
-        <h3>Drone Technology President</h3>
-        <p>Responsible for pre-flight and post-flight safety checks, mission planning, and supervising UAV operations — including drone airworthiness, battery management, and safe deployment during missions.</p>
-        <strong>PRE-FLIGHT / POST-FLIGHT CHECKLIST</strong>
-        <ul>
-          <li>Check battery charge level and secure battery compartment</li>
-          <li>Inspect propellers for damage and ensure correct mounting</li>
-          <li>Verify gimbal covers removed and gimbal stabilised</li>
-          <li>Confirm firmware and software versions are up-to-date</li>
-          <li>Calibrate compass and IMU if required</li>
-          <li>Verify GPS lock and telemetry link</li>
-          <li>Check sensors and cameras for cleanliness and functionality</li>
-          <li>Secure payload (if any) and confirm mounting points</li>
-          <li>Post-flight: inspect for damage, log flight time and battery cycles</li>
-        </ul>
-      </div>
-      <div class="leadership-image">
-        <div class="carousel" id="leadershipCarousel" tabindex="0" aria-label="Leadership images carousel">
-          <button class="carousel-btn prev" aria-label="Previous image">&#10094;</button>
-          <div class="carousel-track">
-            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0140.jpg" alt="Drone preflight 1" class="carousel-slide">
-            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0138.jpg" alt="Drone preflight 2" class="carousel-slide">
-            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0137.jpg" alt="Drone preflight 3" class="carousel-slide">
-            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0136.jpg" alt="Drone preflight 4" class="carousel-slide">
-          </div>
-          <button class="carousel-btn next" aria-label="Next image">&#10095;</button>
-          <div class="carousel-dots" role="tablist" aria-label="Slide indicators"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="leadership-block">
-      <div class="leadership-text">
-        <span class="leadership-tag">Organizer</span>
-        <h2>State of the Map Malawi 2025</h2>
-        <p>Active contributor to the OpenStreetMap community and part of the organizing team for State of the Map Malawi 2025 — the premier gathering for open mapping enthusiasts, GIS professionals, and community mappers across Malawi.</p>
-        <p>The event brings together government, NGOs, academia, and the private sector to share knowledge, build capacity, and advance the use of open geospatial data for national development.</p>
-        <div class="leadership-highlight">
-          <h3>Leadership Impact</h3>
-          <ul>
-            <li>Build a stronger geospatial community in Malawi</li>
-            <li>Promote open data principles and practices</li>
-            <li>Mentor upcoming GIS professionals</li>
-            <li>Foster collaboration between sectors</li>
-          </ul>
-        </div>
-        <a href="https://www.linkedin.com/posts/hamza-nkhumbwa_sotm2025-openstreetmap-gismalawi-activity-7396174585576099840-5kLb" target="_blank" class="btn btn-primary" style="flex:none; display:inline-block;">View Leadership Activity</a>
-      </div>
-      <div class="leadership-image img-bg" style="background-image:url('https://hamza-nkhumbwa.github.io/datasets/sotm.png');"></div>
-    </div>
-  </div>
-</section>
-
-<section class="projects" id="projects">
-  <div class="container">
-    <div class="eyebrow">PROJECT LOG</div>
-    <div class="section-title">
-      <h2>Featured projects</h2>
-      <p>A selection of work applying GIS, remote sensing, and drone mapping to real-world challenges across sectors.</p>
-    </div>
-
-    <div class="featured-project">
-      <div class="featured-media" style="background-image:url('https://hamza-nkhumbwa.github.io/datasets/port.png');">
-        <span class="tag-pin">FLAGSHIP PROJECT</span>
+    <article class="featured">
+      <div class="featured-media" style="background-image:url('https://hamza-nkhumbwa.github.io/datasets/port.png');" role="img" aria-label="Flood analysis map of the Shire sub-basin in Chikwawa">
+        <span class="pin">Flagship project</span>
       </div>
       <div class="featured-body">
-        <h3>Shire Sub-Basin Flood Analysis — Chikwawa</h3>
-        <p>Hydrological flood analysis for a partial sub-basin of the Shire Basin in Chikwawa, modelling flow accumulation and inundation extent to support disaster preparedness and floodplain planning.</p>
-        <div class="project-tags">
-          <span class="project-tag">FLOOD MODELLING</span>
-          <span class="project-tag">HYDROLOGY</span>
-          <span class="project-tag">SHIRE BASIN</span>
-        </div>
-        <div class="project-links">
-          <a href="https://floods-analysis.vercel.app/" target="_blank" class="btn btn-primary">View Full Analysis</a>
-          <a href="https://hamza-nkhumbwa.github.io/datasets/port.png" target="_blank" class="btn btn-outline">View Map</a>
+        <h3>Shire sub-basin flood analysis, Chikwawa</h3>
+        <p>Hydrological analysis of part of the Shire Basin in Chikwawa. It models flow accumulation and flood extent to support disaster preparedness and floodplain planning.</p>
+        <div class="tags"><span class="tag">Flood modelling</span><span class="tag">Hydrology</span><span class="tag">Shire Basin</span></div>
+        <div class="actions">
+          <a class="btn btn-dark" href="https://floods-analysis.vercel.app/" target="_blank" rel="noopener">Open the analysis</a>
+          <a class="btn btn-line" href="https://hamza-nkhumbwa.github.io/datasets/port.png" target="_blank" rel="noopener">View the map</a>
         </div>
       </div>
+    </article>
+
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button class="filter-btn" data-filter="all" aria-pressed="true">All projects</button>
+      <button class="filter-btn" data-filter="data" aria-pressed="false">Dashboards and data</button>
+      <button class="filter-btn" data-filter="disaster" aria-pressed="false">Disaster risk</button>
+      <button class="filter-btn" data-filter="water" aria-pressed="false">Water resources</button>
+      <button class="filter-btn" data-filter="agri" aria-pressed="false">Agriculture</button>
+      <button class="filter-btn" data-filter="land" aria-pressed="false">Land and urban</button>
     </div>
 
-    <div class="project-filters">
-      <button class="filter-btn active" data-filter="all">All Projects</button>
-      <button class="filter-btn" data-filter="disaster">Disaster Management</button>
-      <button class="filter-btn" data-filter="agriculture">Agriculture</button>
-      <button class="filter-btn" data-filter="resources">Natural Resources</button>
-      <button class="filter-btn" data-filter="health">Public Health</button>
-    </div>
+    <div class="grid">
 
-    <div class="projects-grid">
-
-      <div class="project-card" data-category="agriculture">
-        <div class="project-image"><span class="corner-code">AG</span><i class="fas fa-seedling"></i></div>
-        <div class="project-content">
-          <h3>AgriSight — Smart Farming Dashboard</h3>
-          <p>A drone + GIS dashboard built to monitor soil fertility and crop health, enabling data‑driven farming decisions.</p>
-          <div class="project-tags"><span class="project-tag">DRONE MAPPING</span><span class="project-tag">DASHBOARD</span><span class="project-tag">PRECISION AG</span></div>
-          <div class="project-links"><a href="https://naturalwaterresourcesauthority-del.github.io/dashboard/AgriSight_ProjectNew.html" target="_blank" class="btn btn-primary">View Project</a><a href="#" class="btn btn-outline">Details</a></div>
+      <article class="card" data-category="agri data">
+        <div class="card-media no-img tone-agri"><span>Agriculture</span></div>
+        <div class="card-body">
+          <h3>Alumenda Estate monitoring and dashboard</h3>
+          <p>Drone surveys of Illovo sugar estates, processed into orthomosaics covering 800 hectares, plus a spatial decision dashboard for sugarcane sustainability. Also flies continuous security patrols around the estate.</p>
+          <div class="tags"><span class="tag">UAV mapping</span><span class="tag">Security patrols</span><span class="tag">Dashboard</span></div>
+          <p class="note">Client work, so no public link. Samples available on request.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card" data-category="resources">
-        <div class="project-image"><span class="corner-code">NR</span><i class="fas fa-tint"></i></div>
-        <div class="project-content">
-          <h3>NWRA — Groundwater &amp; Water Dashboard</h3>
-          <p>Prototype dashboard for National Water Resources Authority: permit tracking, basin delineation, and visualization tools for groundwater management.</p>
-          <div class="project-tags"><span class="project-tag">WATER RESOURCES</span><span class="project-tag">DASHBOARD</span><span class="project-tag">POLICY SUPPORT</span></div>
-          <div class="project-links"><a href="https://hamza-nkhumbwa.github.io/nwratrialtwo/geetingthere.html" target="_blank" class="btn btn-primary">View Dashboard</a><a href="#" class="btn btn-outline">Details</a></div>
+      <article class="card" data-category="agri data">
+        <div class="card-media no-img tone-agri"><span>Agriculture</span></div>
+        <div class="card-body">
+          <h3>AgriSight: smart farming dashboard</h3>
+          <p>A drone and GIS dashboard that tracks soil fertility and crop health to support data-driven farming decisions.</p>
+          <div class="tags"><span class="tag">Drone mapping</span><span class="tag">Dashboard</span><span class="tag">Precision agriculture</span></div>
+          <div class="actions"><a class="btn btn-dark" href="https://naturalwaterresourcesauthority-del.github.io/dashboard/AgriSight_ProjectNew.html" target="_blank" rel="noopener">Open the dashboard</a></div>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card" data-category="disaster">
-        <div class="project-image"><span class="corner-code">DM</span><i class="fas fa-mountain"></i></div>
-        <div class="project-content">
-          <h3>Soche — Landslide Risk Mapping</h3>
-          <p>Comprehensive landslide risk analysis for Soche, Blantyre, supporting planning, disaster preparedness, and hazard mitigation.</p>
-          <div class="project-tags"><span class="project-tag">RISK ASSESSMENT</span><span class="project-tag">PREPAREDNESS</span><span class="project-tag">SPATIAL ANALYSIS</span></div>
-          <div class="project-links"><a href="https://hamza-nkhumbwa.github.io/datasets/sucesptabilityZones&buildings.png" target="_blank" class="btn btn-primary">View Map</a><a href="#" class="btn btn-outline">Details</a></div>
+      <article class="card" data-category="water data">
+        <div class="card-media no-img tone-water"><span>Water resources</span></div>
+        <div class="card-body">
+          <h3>NWRA groundwater and water dashboard</h3>
+          <p>Interactive dashboard for the National Water Resources Authority covering permit tracking, basin delineation and a database of 4,650 boreholes.</p>
+          <div class="tags"><span class="tag">Groundwater</span><span class="tag">Dashboard</span><span class="tag">Policy support</span></div>
+          <div class="actions"><a class="btn btn-dark" href="https://hamza-nkhumbwa.github.io/nwratrialtwo/geetingthere.html" target="_blank" rel="noopener">Open the dashboard</a></div>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card" data-category="disaster">
-        <div class="project-image"><span class="corner-code">DM</span><i class="fas fa-helicopter"></i></div>
-        <div class="project-content">
-          <h3>Salima — Pre-Disaster Preparedness Mapping</h3>
-          <p>Participatory baseline mapping with the African Drone and Data Academy (ADDA) Emergency Unit, supported by UNICEF — over 305 hectares mapped using KoboCollect, GPS Essential, and the DJI Mavic 3E Enterprise.</p>
-          <div class="project-tags"><span class="project-tag">RISK ASSESSMENT</span><span class="project-tag">PREPAREDNESS</span><span class="project-tag">SPATIAL ANALYSIS</span></div>
-          <div class="project-links"><a href="https://www.linkedin.com/posts/hamza-nkhumbwa_sotm2025-openstreetmap-gismalawi-activity-7401021550042296320-J0TV" target="_blank" class="btn btn-primary">View Activity</a><a href="#" class="btn btn-outline">Details</a></div>
+      <article class="card" data-category="water">
+        <div class="card-media tone-water" style="background-image:url('https://hamza-nkhumbwa.github.io/datasets/gauging.png');" role="img" aria-label="Catchment delineation map for gauging stations"></div>
+        <div class="card-body">
+          <h3>Catchment delineation for gauging stations</h3>
+          <p>Catchment areas for gauging stations across Malawi, built from DEM preprocessing and watershed delineation to support hydrological analysis.</p>
+          <div class="tags"><span class="tag">Hydrology</span><span class="tag">DEM analysis</span><span class="tag">Watersheds</span></div>
+          <div class="actions"><a class="btn btn-dark" href="https://hamza-nkhumbwa.github.io/datasets/gauging.png" target="_blank" rel="noopener">View the map</a></div>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card" data-category="disaster">
-        <div class="project-image"><span class="corner-code">DM</span><i class="fas fa-water"></i></div>
-        <div class="project-content">
-          <h3>Ngabu, Chikwawa — Post-Disaster Analysis</h3>
-          <p>Comprehensive flood risk analysis for Ngabu, Chikwawa, supporting planning and hazard mitigation.</p>
-          <div class="project-tags"><span class="project-tag">RISK ASSESSMENT</span><span class="project-tag">PREPAREDNESS</span><span class="project-tag">SPATIAL ANALYSIS</span></div>
-          <div class="project-links"><a href="https://www.linkedin.com/posts/hamza-nkhumbwa_must-un-unicef-activity-7226601719990751232-Bo7C" target="_blank" class="btn btn-primary">View Link</a><a href="#" class="btn btn-outline">Details</a></div>
+      <article class="card" data-category="disaster">
+        <div class="card-media tone-disaster" style="background-image:url('https://hamza-nkhumbwa.github.io/datasets/sucesptabilityZones%26buildings.png');" role="img" aria-label="Landslide susceptibility zones and buildings in Soche, Blantyre"></div>
+        <div class="card-body">
+          <h3>Soche landslide risk mapping</h3>
+          <p>Landslide susceptibility zones overlaid with buildings in Soche, Blantyre, to support planning and hazard mitigation.</p>
+          <div class="tags"><span class="tag">Risk assessment</span><span class="tag">Susceptibility</span><span class="tag">Spatial analysis</span></div>
+          <div class="actions"><a class="btn btn-dark" href="https://hamza-nkhumbwa.github.io/datasets/sucesptabilityZones%26buildings.png" target="_blank" rel="noopener">View the map</a></div>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card" data-category="resources">
-        <div class="project-image"><span class="corner-code">NR</span><i class="fas fa-tree"></i></div>
-        <div class="project-content">
-          <h3>SBAPP — National Land Cover Mapping</h3>
-          <p>Spatial Biodiversity Assessment, Prioritization and Planning — collaborative national mapping using Google Earth Engine to support conservation and policy.</p>
-          <div class="project-tags"><span class="project-tag">LAND COVER</span><span class="project-tag">BIODIVERSITY</span><span class="project-tag">GOOGLE EARTH ENGINE</span></div>
-          <div class="project-links"><a href="https://www.linkedin.com/posts/hamza-nkhumbwa_must-ead-sbapp-activity-7331742943080271872-zPSZ" target="_blank" class="btn btn-primary">View Highlights</a><a href="#" class="btn btn-outline">Details</a></div>
+      <article class="card" data-category="disaster">
+        <div class="card-media no-img tone-disaster"><span>Disaster risk</span></div>
+        <div class="card-body">
+          <h3>Salima pre-disaster preparedness mapping</h3>
+          <p>Participatory baseline mapping with the African Drone and Data Academy Emergency Unit, supported by UNICEF. Over 305 hectares mapped with KoboCollect, GPS Essential and a DJI Mavic 3E.</p>
+          <div class="tags"><span class="tag">Preparedness</span><span class="tag">Drone mapping</span><span class="tag">Field data</span></div>
+          <div class="actions"><a class="btn btn-dark" href="https://www.linkedin.com/posts/hamza-nkhumbwa_sotm2025-openstreetmap-gismalawi-activity-7401021550042296320-J0TV" target="_blank" rel="noopener">View on LinkedIn</a></div>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card" data-category="resources">
-        <div class="project-image img-bg" style="background-image:url('https://hamza-nkhumbwa.github.io/datasets/gauging.png');"><span class="corner-code">NR</span></div>
-        <div class="project-content">
-          <h3>Catchment Delineation — Gauging Stations</h3>
-          <p>Delineated catchment areas for gauging stations across Malawi to support hydrological analysis and water resources planning, including DEM preprocessing and watershed delineation.</p>
-          <div class="project-tags"><span class="project-tag">HYDROLOGY</span><span class="project-tag">CATCHMENT DELINEATION</span><span class="project-tag">DEM ANALYSIS</span></div>
-          <div class="project-links"><a href="https://hamza-nkhumbwa.github.io/datasets/gauging.png" target="_blank" class="btn btn-primary">View Map</a><a href="#" class="btn btn-outline">Method</a></div>
+      <article class="card" data-category="disaster">
+        <div class="card-media no-img tone-disaster"><span>Disaster risk</span></div>
+        <div class="card-body">
+          <h3>Ngabu, Chikwawa: flood risk analysis</h3>
+          <p>Post-disaster flood risk analysis for Ngabu in Chikwawa district, supporting planning and hazard mitigation.</p>
+          <div class="tags"><span class="tag">Flood risk</span><span class="tag">Post-disaster</span><span class="tag">Spatial analysis</span></div>
+          <div class="actions"><a class="btn btn-dark" href="https://www.linkedin.com/posts/hamza-nkhumbwa_must-un-unicef-activity-7226601719990751232-Bo7C" target="_blank" rel="noopener">View on LinkedIn</a></div>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card" data-category="health">
-        <div class="project-image"><span class="corner-code">UP</span><i class="fas fa-city"></i></div>
-        <div class="project-content">
-          <h3>Urban Planning — Lilongwe City Council</h3>
-          <p>Digitizing land records and supporting UN Urban Resilience Planning using ArcGIS Pro, QGIS, and drone‑based analysis.</p>
-          <div class="project-tags"><span class="project-tag">URBAN PLANNING</span><span class="project-tag">RESILIENCE</span><span class="project-tag">DRONE MAPPING</span></div>
-          <div class="project-links"><a href="https://www.linkedin.com/posts/hamza-nkhumbwa_deeplearning-esri-sustainability-activity-7255599634486554625-MaWH" target="_blank" class="btn btn-primary">Read Story</a><a href="#" class="btn btn-outline">Details</a></div>
+      <article class="card" data-category="land">
+        <div class="card-media no-img tone-land"><span>Land cover</span></div>
+        <div class="card-body">
+          <h3>SBAPP: national land cover mapping</h3>
+          <p>Contributed to Malawi's official land cover maps in Google Earth Engine, working with Surveys, Forestry, Environmental Affairs, Land Resources, Physical Planning and MEPA.</p>
+          <div class="tags"><span class="tag">Land cover</span><span class="tag">Biodiversity</span><span class="tag">Google Earth Engine</span></div>
+          <div class="actions"><a class="btn btn-dark" href="https://www.linkedin.com/posts/hamza-nkhumbwa_must-ead-sbapp-activity-7331742943080271872-zPSZ" target="_blank" rel="noopener">View on LinkedIn</a></div>
         </div>
-      </div>
+      </article>
 
-      <div class="project-card" data-category="resources">
-        <div class="project-image"><span class="corner-code">NR</span><i class="fas fa-chart-line"></i></div>
-        <div class="project-content">
-          <h3>Dzalanyama Forest — Land Use Change Prediction</h3>
-          <p>Machine learning‑based land use/cover change forecasting integrating historical data and predictive modelling.</p>
-          <div class="project-tags"><span class="project-tag">MACHINE LEARNING</span><span class="project-tag">LAND USE CHANGE</span><span class="project-tag">FORECASTING</span></div>
-          <div class="project-links"><a href="https://hamza-nkhumbwa.github.io/datasets/HAMZA-MANUSCRIPT[1]_Dzalanyamapdf.pdf" target="_blank" class="btn btn-primary">View Manuscript</a><a href="#" class="btn btn-outline">Details</a></div>
+      <article class="card" data-category="land">
+        <div class="card-media no-img tone-land"><span>Land cover</span></div>
+        <div class="card-body">
+          <h3>Dzalanyama Forest: land cover change and prediction</h3>
+          <p>Change detection and machine learning forecasts of future land cover, with accuracy assessment, written up as a manuscript.</p>
+          <div class="tags"><span class="tag">Machine learning</span><span class="tag">Change detection</span><span class="tag">Forecasting</span></div>
+          <div class="actions"><a class="btn btn-dark" href="https://hamza-nkhumbwa.github.io/datasets/HAMZA-MANUSCRIPT%5B1%5D_Dzalanyamapdf.pdf" target="_blank" rel="noopener">Read the manuscript</a></div>
         </div>
-      </div>
+      </article>
+
+      <article class="card" data-category="land">
+        <div class="card-media no-img tone-land"><span>Urban planning</span></div>
+        <div class="card-body">
+          <h3>Lilongwe City Council town planning</h3>
+          <p>Digitised land parcels for official site plans, produced planning maps in ArcGIS Pro and QGIS, and supported the UN Urban Resilience Plan.</p>
+          <div class="tags"><span class="tag">Urban planning</span><span class="tag">Parcel digitising</span><span class="tag">Resilience</span></div>
+          <div class="actions"><a class="btn btn-dark" href="https://www.linkedin.com/posts/hamza-nkhumbwa_deeplearning-esri-sustainability-activity-7255599634486554625-MaWH" target="_blank" rel="noopener">Read the story</a></div>
+        </div>
+      </article>
 
     </div>
   </div>
 </section>
 
-<section class="about" id="about">
+<!-- ================= EXPERIENCE ================= -->
+<section class="band band-alt" id="experience">
   <div class="container">
-    <div class="about-content">
-      <div class="about-text">
-        <div class="eyebrow">PROFILE</div>
+    <div class="section-head">
+      <h2>Experience</h2>
+      <p>Field and desk work for a sugar estate, a national water authority and a city council.</p>
+    </div>
+    <ol class="timeline">
+      <li>
+        <div class="when">Present</div>
+        <div class="what">
+          <h3>Drone Pilot, Monitoring and Surveillance</h3>
+          <p class="org">World Wide Joint Discoveries, subcontractor to Alumenda Illovo Sugar Estates</p>
+          <ul>
+            <li>Fly UAV missions across Illovo estates for environmental monitoring, estate planning and operational assessment.</li>
+            <li>Processed imagery into orthomosaics and map products covering 800 hectares.</li>
+            <li>Built a spatial decision dashboard for Alumenda Estate to support sugarcane sustainability.</li>
+            <li>Operate as a security drone pilot, flying continuous patrols around the estate.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="when">June 2025 to Feb 2026</div>
+        <div class="what">
+          <h3>GIS Intern (Volunteer)</h3>
+          <p class="org">National Water Resources Authority (NWRA)</p>
+          <ul>
+            <li>Built an automated, real-time dashboard for hydrogeological decision-making.</li>
+            <li>Designed a groundwater database of 4,650 boreholes, mapped to show their spatial distribution.</li>
+            <li>Produced land cover maps in Google Earth Engine and delineated basins from gauging station coordinates.</li>
+            <li>Inspected water abstractors with GNSS receivers and verified permit and licence compliance.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="when">1 year</div>
+        <div class="what">
+          <h3>GIS and Mapping Intern</h3>
+          <p class="org">Lilongwe City Council, Town Planning Office</p>
+          <ul>
+            <li>Digitised land parcels for regularisation and official site plans.</li>
+            <li>Produced planning maps in ArcGIS Pro and QGIS.</li>
+            <li>Worked with the Chief Town Planning Officer on the UN Urban Resilience Plan and carried out topographic surveys.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= ABOUT & SKILLS ================= -->
+<section class="band" id="about">
+  <div class="container about-grid">
+    <div>
+      <div class="section-head" style="margin-bottom:20px;">
         <h2>About me</h2>
-        <p>I am a dedicated Geo-Informatics professional with expertise in GIS, remote sensing, and spatial data analysis. My work focuses on applying these technologies to address critical challenges in disaster management, agriculture, natural resources, energy, and public health.</p>
-        <p>With a background in environmental science and geospatial technologies, I bridge the gap between technical data analysis and practical, real-world applications that benefit communities and support sustainable development.</p>
-        <p>My approach combines field experience with advanced analytical techniques to deliver insights that inform policy, improve resource management, and enhance resilience to environmental challenges.</p>
-        <h3 style="margin-top:28px; font-size:1.1rem;">Technical Skills</h3>
-        <div class="skills">
-          <span class="skill">GIS Analysis</span><span class="skill">Remote Sensing</span><span class="skill">Drone Mapping</span>
-          <span class="skill">Spatial Modeling</span><span class="skill">Google Earth Engine</span><span class="skill">Python</span>
-          <span class="skill">QGIS</span><span class="skill">ArcGIS</span><span class="skill">Web GIS</span><span class="skill">Data Visualization</span>
+      </div>
+      <p>I graduated from the Malawi University of Science and Technology in 2025 with a BSc in Geo-Information Systems and Earth Observation Science, and I hold a Malawi CAA remote pilot licence.</p>
+      <p>I work as a data analyst as well as a GIS specialist. Some of my data comes from drones, satellites and GNSS surveys, and some from databases, permit records and spreadsheets. Either way, I clean it, analyse it and present it as maps, models and dashboards that decision-makers can use.</p>
+      <p>I am looking for a role where data supports real decisions, in sectors such as agriculture, water, environment, disaster risk and urban planning.</p>
+    </div>
+    <div>
+      <div class="skill-group"><h3>Data analysis and visualisation</h3><p>Python, R, SQL, SPSS, Power BI, interactive dashboards, statistical analysis, accuracy assessment, database design</p></div>
+      <div class="skill-group"><h3>GIS and remote sensing</h3><p>ArcGIS Pro, ArcGIS Online, QGIS, Google Earth Engine, ENVI, Digital Earth Africa</p></div>
+      <div class="skill-group"><h3>UAV and surveying</h3><p>Orthomosaic and 3D mapping, multi-sensor imagery processing, GNSS and topographic surveys</p></div>
+      <div class="skill-group"><h3>Analysis and modelling</h3><p>Land cover change detection, machine learning prediction, accuracy assessment, flood and hydrological analysis</p></div>
+      <div class="skill-group"><h3>Programming and databases</h3><p>Python, JavaScript, R, SQL, PostgreSQL/PostGIS, MySQL</p></div>
+      <div class="skill-group"><h3>Dashboards and web GIS</h3><p>Power BI, HTML/CSS, React, GitHub, Vercel</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CREDENTIALS ================= -->
+<section class="band band-alt" id="credentials">
+  <div class="container">
+    <div class="section-head">
+      <h2>Credentials and recognition</h2>
+    </div>
+    <div class="cred-grid">
+      <div>
+        <div class="cred-block">
+          <h3>Education</h3>
+          <ul class="cred-list">
+            <li><strong>BSc Geo-Information Systems and Earth Observation Science (Credit)</strong><span>Malawi University of Science and Technology, Feb 2021 to May 2025</span></li>
+          </ul>
+        </div>
+        <div class="cred-block">
+          <h3>Awards</h3>
+          <ul class="cred-list">
+            <li><strong>FDH-MUST Graduate Innovative Ideas Award</strong><span>2026</span></li>
+            <li><strong>Small Grants Award for research</strong><span>OpenStreetMap Malawi</span></li>
+            <li><strong>Top 1 and Top 2 UAV Maneuver Operator</strong><span>African Drone and Data Academy</span></li>
+          </ul>
         </div>
       </div>
-      <div class="about-image" style="background-image:url('https://hamza-nkhumbwa.github.io/datasets/gis.png');">
-        <span>Spatial Data for Sustainable Development</span>
+      <div class="cred-block">
+        <h3>Licences and certifications</h3>
+        <ul class="cred-list">
+          <li><strong>Remote Pilot Licence</strong><span>Malawi Civil Aviation Authority, with medical fitness certificate</span></li>
+          <li><strong>Drone Operation, Level 2</strong><span>African Drone and Data Academy (MUST and Virginia Tech), Oct 2025</span></li>
+          <li><strong>Drone Operation, Level 1</strong><span>African Drone and Data Academy, Dec 2024 to Jan 2025</span></li>
+          <li><strong>Spatial Analysis: New Frontiers</strong><span>ESRI Academy, 2024</span></li>
+          <li><strong>Making an Impact with Modern Geo Apps</strong><span>ESRI Academy, ArcGIS Pro and ArcGIS Online</span></li>
+          <li><strong>Water Management and Sandbox Introduction</strong><span>Digital Earth Africa</span></li>
+          <li><strong>Software Engineering</strong><span>ALX, 2024</span></li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ================= LEADERSHIP ================= -->
+<section class="band" id="leadership">
+  <div class="container">
+    <div class="section-head">
+      <h2>Leadership and community</h2>
+      <p>Running safe drone operations and growing the open mapping community in Malawi.</p>
+    </div>
+
+    <div class="lead-block">
+      <div>
+        <h3>Drone Technology President</h3>
+        <p class="lead-role">Team lead</p>
+        <p>I am responsible for pre-flight and post-flight safety checks, mission planning and supervising UAV operations, including airworthiness, battery management and safe deployment.</p>
+        <ul>
+          <li>Check batteries, propellers, gimbal and payload mounting</li>
+          <li>Confirm firmware is current, calibrate compass and IMU, and verify GPS lock</li>
+          <li>After each flight, inspect for damage and log flight time and battery cycles</li>
+        </ul>
+      </div>
+      <div class="lead-img">
+        <div class="carousel" id="leadershipCarousel" tabindex="0" aria-label="Drone pre-flight photos">
+          <button class="carousel-btn prev" aria-label="Previous photo">&#10094;</button>
+          <div class="carousel-track">
+            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0140.jpg" alt="Drone pre-flight check" class="carousel-slide" loading="lazy">
+            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0138.jpg" alt="Drone pre-flight preparation" class="carousel-slide" loading="lazy">
+            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0137.jpg" alt="Drone team during a pre-flight briefing" class="carousel-slide" loading="lazy">
+            <img src="https://hamza-nkhumbwa.github.io/datasets/IMG-20251014-WA0136.jpg" alt="Drone ready for take-off" class="carousel-slide" loading="lazy">
+          </div>
+          <button class="carousel-btn next" aria-label="Next photo">&#10095;</button>
+          <div class="carousel-dots" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lead-block">
+      <div>
+        <h3>State of the Map Malawi 2025</h3>
+        <p class="lead-role">Organising team</p>
+        <p>I contribute to OpenStreetMap and helped organise State of the Map Malawi 2025, which brought together government, NGOs, universities and the private sector to share knowledge on open geospatial data.</p>
+        <p>I also served as Interim President and Academic Director of the Student Representative Council at MUST.</p>
+        <a class="btn btn-dark" href="https://www.linkedin.com/posts/hamza-nkhumbwa_sotm2025-openstreetmap-gismalawi-activity-7396174585576099840-5kLb" target="_blank" rel="noopener">See the event on LinkedIn</a>
+      </div>
+      <div class="lead-img" style="background-image:url('https://hamza-nkhumbwa.github.io/datasets/sotm.png');" role="img" aria-label="State of the Map Malawi 2025"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= CONTACT ================= -->
 <section class="contact" id="contact">
-  <div class="container">
-    <div class="eyebrow">GET IN TOUCH</div>
-    <div class="section-title">
-      <h2>Let's talk</h2>
-      <p>Interested in collaborating or learning more about my work? Reach out below.</p>
+  <div class="container contact-grid">
+    <div>
+      <h2>Let's work together</h2>
+      <p>I am open to GIS, remote sensing and drone mapping roles, and to project work. Email or WhatsApp is the quickest way to reach me.</p>
+      <a class="btn btn-accent" href="Hamza_Nkhumbwa_CV_2026.pdf" download><i class="fas fa-download" aria-hidden="true"></i>Download CV</a>
     </div>
-    <div class="contact-content">
-      <div class="contact-info">
-        <div class="contact-item"><i class="fas fa-envelope"></i><div><h3>Email</h3><p><a href="mailto:hamzankhumbwa01@gmail.com">hamzankhumbwa01@gmail.com</a></p></div></div>
-        <div class="contact-item"><i class="fas fa-phone"></i><div><h3>Phone</h3><p><a href="tel:+265997386793">+265 997 386 793</a></p></div></div>
-        <div class="contact-item"><i class="fab fa-whatsapp"></i><div><h3>WhatsApp</h3><p><a href="https://wa.me/265997386793" target="_blank">Message on WhatsApp</a></p></div></div>
-        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h3>Location</h3><p>Blantyre, Malawi</p></div></div>
-        <div class="contact-item"><i class="fab fa-linkedin"></i><div><h3>LinkedIn</h3><p><a href="https://www.linkedin.com/in/hamza-nkhumbwa" target="_blank">linkedin.com/in/hamza-nkhumbwa</a></p></div></div>
-      </div>
-      <div class="contact-form">
-        <form id="contactForm">
-          <div class="form-group"><label for="name">Name</label><input type="text" id="name" required></div>
-          <div class="form-group"><label for="email">Email</label><input type="email" id="email" required></div>
-          <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" required></div>
-          <div class="form-group"><label for="message">Message</label><textarea id="message" required></textarea></div>
-          <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-banner">
-  <div class="container">
-    <h2>Ready to leverage spatial data for your projects?</h2>
-    <p>Let's discuss how GIS can solve your organization's challenges in disaster management, agriculture, natural resources, or public health.</p>
-    <div class="cta-actions">
-      <a href="#contact" class="cta-button"><i class="fas fa-paper-plane"></i>Start a Conversation</a>
-      <a href="tel:+265997386793" class="cta-button alt"><i class="fas fa-phone"></i>+265 997 386 793</a>
-    </div>
+    <ul class="contact-links">
+      <li><a href="mailto:hamzankhumbwa01@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i><span><small>Email</small>hamzankhumbwa01@gmail.com</span></a></li>
+      <li><a href="https://wa.me/265997386793" target="_blank" rel="noopener"><i class="fab fa-whatsapp" aria-hidden="true"></i><span><small>WhatsApp</small>+265 997 386 793</span></a></li>
+      <li><a href="tel:+265997386793"><i class="fas fa-phone" aria-hidden="true"></i><span><small>Phone</small>+265 997 386 793</span></a></li>
+      <li><a href="https://www.linkedin.com/in/hamza-nkhumbwa" target="_blank" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i><span><small>LinkedIn</small>linkedin.com/in/hamza-nkhumbwa</span></a></li>
+    </ul>
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="logo"><i class="fas fa-location-crosshairs"></i>Mapping Change</div>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/hamza-nkhumbwa" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:hamzankhumbwa01@gmail.com"><i class="fas fa-envelope"></i></a>
-        <a href="tel:+265997386793"><i class="fas fa-phone"></i></a>
-      </div>
-    </div>
-    <div class="copyright">© 2025 Hamza Nkhumbwa. All rights reserved.</div>
+  <div class="container footer-inner">
+    <span>&copy; 2026 Hamza Nkhumbwa</span>
+    <span>Blantyre, Malawi</span>
   </div>
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-      const filterValue = this.getAttribute('data-filter');
-      projectCards.forEach(card => {
-        card.style.display = (filterValue === 'all' || card.getAttribute('data-category') === filterValue) ? 'flex' : 'none';
+document.addEventListener('DOMContentLoaded', function () {
+  // Project filters
+  var buttons = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('.card');
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+      var f = btn.getAttribute('data-filter');
+      cards.forEach(function (c) {
+        c.hidden = !(f === 'all' || c.getAttribute('data-category').split(' ').indexOf(f) !== -1);
       });
     });
   });
 
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value || '';
-    const email = document.getElementById('email').value || '';
-    const subject = document.getElementById('subject').value || 'Contact via Portfolio';
-    const message = document.getElementById('message').value || '';
-    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
-    window.location.href = `mailto:hamzankhumbwa01@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-    this.reset();
+  // Sector cards jump to the matching project filter
+  document.querySelectorAll('[data-goto]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var b = document.querySelector('.filter-btn[data-filter="' + a.getAttribute('data-goto') + '"]');
+      if (b) b.click();
+    });
   });
-});
 
-(function() {
-  const carousel = document.getElementById('leadershipCarousel');
-  if(!carousel) return;
-  const track = carousel.querySelector('.carousel-track');
-  const slides = Array.from(track.querySelectorAll('.carousel-slide'));
-  const prevBtn = carousel.querySelector('.carousel-btn.prev');
-  const nextBtn = carousel.querySelector('.carousel-btn.next');
-  const dotsContainer = carousel.querySelector('.carousel-dots');
-  let idx = 0;
-  slides.forEach((s, i) => {
-    const btn = document.createElement('button');
-    btn.setAttribute('aria-label', 'Slide ' + (i+1));
-    if(i === 0) btn.classList.add('active');
-    btn.addEventListener('click', () => { idx = i; update(); });
-    dotsContainer.appendChild(btn);
-  });
-  const dots = Array.from(dotsContainer.querySelectorAll('button'));
-  function update() {
-    const w = track.clientWidth;
-    track.style.transform = 'translateX(' + (-idx * w) + 'px)';
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  // Respect reduced-motion for the hero video
+  var video = document.getElementById('heroVideo');
+  if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.removeAttribute('autoplay');
+    video.pause();
   }
-  window.addEventListener('resize', update);
-  prevBtn.addEventListener('click', () => { idx = (idx - 1 + slides.length) % slides.length; update(); });
-  nextBtn.addEventListener('click', () => { idx = (idx + 1) % slides.length; update(); });
-  carousel.addEventListener('keydown', (e) => {
-    if(e.key === 'ArrowLeft') prevBtn.click();
-    if(e.key === 'ArrowRight') nextBtn.click();
+
+  // Carousel
+  var carousel = document.getElementById('leadershipCarousel');
+  if (!carousel) return;
+  var track = carousel.querySelector('.carousel-track');
+  var slides = Array.prototype.slice.call(track.querySelectorAll('.carousel-slide'));
+  var prev = carousel.querySelector('.prev');
+  var next = carousel.querySelector('.next');
+  var dotsWrap = carousel.querySelector('.carousel-dots');
+  var idx = 0;
+  slides.forEach(function (s, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Photo ' + (i + 1));
+    if (i === 0) b.classList.add('active');
+    b.addEventListener('click', function () { idx = i; update(); });
+    dotsWrap.appendChild(b);
   });
-  let startX = null;
-  track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
-  track.addEventListener('touchend', (e) => {
-    if(startX === null) return;
-    const diff = startX - e.changedTouches[0].clientX;
-    if(Math.abs(diff) > 40) { diff > 0 ? nextBtn.click() : prevBtn.click(); }
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+  function update() {
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+  }
+  prev.addEventListener('click', function () { idx = (idx - 1 + slides.length) % slides.length; update(); });
+  next.addEventListener('click', function () { idx = (idx + 1) % slides.length; update(); });
+  carousel.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') prev.click();
+    if (e.key === 'ArrowRight') next.click();
+  });
+  var startX = null;
+  track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    if (startX === null) return;
+    var d = startX - e.changedTouches[0].clientX;
+    if (Math.abs(d) > 40) { d > 0 ? next.click() : prev.click(); }
     startX = null;
   });
-})();
+});
 </script>
 </body>
 </html>
